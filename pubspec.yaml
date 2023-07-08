@@ -1,11 +1,10 @@
 name: flame_gamepad
 description: A new flutter plugin project.
 version: 0.0.2
-author: Fireslime <contact@fireslime.xyz>
 homepage: https://github.com/fireslime/flame_gamepad
 
 environment:
-  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  sdk: ">=2.19.3 <3.0.0"
 
 dependencies:
   flutter:

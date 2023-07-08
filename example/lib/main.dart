@@ -43,7 +43,9 @@ class _MyAppState extends State<MyApp> {
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling
     // setState to update our non-existent appearance.
-    if (!mounted) return;
+    if (!mounted) {
+      return;
+    }
 
     setState(() {
       _isConnected = isConnected;
@@ -62,8 +64,8 @@ class _MyAppState extends State<MyApp> {
             children: [
               Text('Is connected on: $_isConnected\n'),
               Text(_lastEvent),
-              RaisedButton(
-                child: Text('Try connection again'),
+              ElevatedButton(
+                child: const Text('Try connection again'),
                 onPressed: () async {
                   final isConnected = await checkIsConnected();
                   setState(() {

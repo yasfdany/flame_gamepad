@@ -46,7 +46,7 @@ const ANDROID_MAPPING = {
 /// Gamepad functionalities
 ///
 class FlameGamepad {
-  KeyListener listener;
+  KeyListener? listener;
 
   static Future<bool> get isGamepadConnected async {
     final bool isConnected = await _channel.invokeMethod('isGamepadConnected');
@@ -63,17 +63,19 @@ class FlameGamepad {
       if (e.data is RawKeyEventDataAndroid) {
         final androidEvent = e.data as RawKeyEventDataAndroid;
 
-        final String key = ANDROID_MAPPING[androidEvent.keyCode];
-        if (key != null) {
-          gamepadListener(evtType, key);
-        }
+        final String key = ANDROID_MAPPING[androidEvent.keyCode] ?? '';
+        gamepadListener(evtType, key);
       }
     };
 
-    RawKeyboard.instance.addListener(listener);
+    if (listener != null) {
+      RawKeyboard.instance.addListener(listener!);
+    }
   }
 
   void removeListener() {
-    RawKeyboard.instance.removeListener(listener);
+    if (listener != null) {
+      RawKeyboard.instance.removeListener(listener!);
+    }
   }
 }
